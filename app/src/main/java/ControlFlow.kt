@@ -17,10 +17,10 @@ fun main () {
     }
     println()
     println("Проверка через when:")
-    when {
-        num == 0 -> println("$num является 0")
-        num > 0 -> println("$num является положительным числом")
-        num < 0 -> println("$num является отрицательным числом")
+    when (num) {
+        0 -> println("$num является 0")
+        in 1..Int.MAX_VALUE -> println("$num является положительным числом")
+        in Int.MIN_VALUE..-1 -> println("$num является отрицательным числом")
     }
     println()
     println()
@@ -39,9 +39,9 @@ fun main () {
     }
     println()
     println("Числа массива и их кубы:")
-    var k = 1
-    while (k <= 10) {
-        println("Число: $k. Его квадрат: ${k * k * k}")
+    var k = 0
+    while (k < 10) {
+        println("Число: ${numbers[k]}. Его куб: ${numbers[k] * numbers[k] * numbers[k]}")
         k++
     }
     println()
@@ -110,7 +110,7 @@ fun main () {
             }
         }
     }
-    if (isSearch == false) {
+    if (!isSearch) {
         println("Целевое число не найдено в матрице")
     }
     println()
@@ -153,5 +153,6 @@ fun main () {
         }
     } catch (e: Exception) {
         println("Поймано исключение: $e")
+        e.printStackTrace()
     }
 }
