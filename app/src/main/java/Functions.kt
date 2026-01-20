@@ -51,9 +51,14 @@ fun main () {
     Используйте аннотацию tailrec для оптимизации.
     */
     println("Задание 4: Рекурсивная функция generateSequence")
-    tailrec fun generateSequence(n: Int, result: String = ""): String {
-        val sequence = "$n $result"
+    tailrec fun generateSequence(n: Int, result: Array<Int> = arrayOf()): Array<Int> {
+        val sequence = arrayOf(n) + result
         return if (n == 1) sequence else generateSequence(n - 1, sequence)
+    }
+    // не знаю, что использовать лучше, поэтому оставлю и 2й вариант
+    tailrec fun generateSequence2(n: Int, result: MutableList<Int> = mutableListOf()): MutableList<Int> {
+        result.add(0,n)
+        return if (n == 1) result else generateSequence2(n - 1, result)
     }
     println("Последовательность чисел от 1 до $x: ${generateSequence(x)}")
     println()
