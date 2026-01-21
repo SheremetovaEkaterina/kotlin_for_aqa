@@ -1,6 +1,6 @@
 
 
-class Persons (val name: String, val age: Int)
+class Person2 (val name: String, val age: Int)
 data class Auto (val make: String, val model: String, val year: Int)
 
 
@@ -31,7 +31,7 @@ fun main () {
     возвращать результат.
      */
     println("Задание 3: функция высшего порядка")
-    fun conversation (a: Int, operation: (Int) -> String): String {
+    fun convert (a: Int, operation: (Int) -> String): String {
         return operation(a)
     }
 
@@ -39,7 +39,7 @@ fun main () {
         return num.toString()
     }
 
-    val result = conversation(10, ::intToString)
+    val result = convert(10, ::intToString)
     println(result)
     println("Результат является строкой? ${result is String}")
     println()
@@ -63,11 +63,12 @@ fun main () {
     Используйте filter и map чтобы получить список имен тех людей, которым больше 18 лет.
      */
     println("Задание 5: вывод имен людей, которым больше 18 лет")
-    val listPersons = mutableListOf<Persons>()
-    listPersons.add(Persons("Иван", 15))
-    listPersons.add(Persons("Антон", 40))
-    listPersons.add(Persons("Ангелина", 12))
-    listPersons.add(Persons("Инна", 32))
+    val listPersons = listOf(
+        Person2("Иван", 15),
+        Person2("Антон", 40),
+        Person2("Ангелина", 12),
+        Person2("Инна", 32)
+        )
     println(listPersons.filter{it.age > 18}.map {it.name})
     println()
     println()
