@@ -13,14 +13,14 @@ class Car {
 /**
  * Это enum класс DayOfWeek, создан для задания 2.
  */
-enum class DayOfWeek() {
-    MONDAY(),
-    TUESDAY(),
-    WEDNESDAY(),
-    THURSDAY(),
-    FRIDAY(),
-    SATURDAY(),
-    SUNDAY()
+enum class DayOfWeek {
+    MONDAY,
+    TUESDAY,
+    WEDNESDAY,
+    THURSDAY,
+    FRIDAY,
+    SATURDAY,
+    SUNDAY
 }
 
 /**
@@ -36,8 +36,8 @@ object Singleton {
  * Это класс Person, создан для задания 4 и 5.
  */
 class Person {
-    private var name: String = ""
-        set (value) {
+    var name: String = ""
+        set(value) {
             println("Значение свойства name теперь - $value")
             field = value
         }
@@ -45,12 +45,11 @@ class Person {
             println("Получаем имя $field")
             return field
         }
-    private var age: Int = 0
-        set (value) {
+    var age: Int = 0
+        set(value) {
             if (value < 0) {
                 println("Возраст не может быть отрицательным")
-            }
-            else {
+            } else {
                 println("Значение свойства age теперь - $value")
                 field = value
             }
@@ -58,35 +57,19 @@ class Person {
         get() {
             if (field > 0) {
                 println("Получаем возраст $field")
-            }
-            else {
+            } else {
                 println("Возраст не указан")
             }
             return field
         }
+
     // функции для 4 задания
-    fun getName(){
+    fun getName() {
         println("Имя этого человека: $name")
     }
-    fun getAge(){
+
+    fun getAge() {
         println("Возраст этого человека: $age")
-    }
-
-    // функции для 5 задания для вызова приватных свойств извне класса
-    fun setNameValue(value: String) {
-        name = value
-    }
-
-    fun setAgeValue(value: Int) {
-        age = value
-    }
-
-    fun getNameValue(): String {
-        return name
-    }
-
-    fun getAgeValue(): Int {
-        return age
     }
 }
 
@@ -139,36 +122,19 @@ abstract class Shape {
 /**
  * Это класс Circle, наследник Shape и реализовавывает метод area().
  */
-class Circle : Shape {
-    val pi: Double = 3.14
-    var r: Double = 0.0
-
-    constructor(radius: Double) {
-        this.r = radius
-    }
-
+class Circle(var r: Double, var pi: Double = 3.14) : Shape() {
     override fun area(): Double {
         return pi * r * r
     }
-
 }
 
 /**
  * Это класс Rectangle, наследник Shape и реализовавывает метод area().
  */
-class Rectangle : Shape {
-    var x: Double = 0.0
-    var y: Double = 0.0
-
-    constructor(x: Double, y: Double) {
-        this.x = x
-        this.y = y
-    }
-
+class Rectangle (var x: Double, var y: Double) : Shape() {
     override fun area(): Double {
         return x * y
     }
-
 }
 
 /**
@@ -224,9 +190,7 @@ data class User (val username: String, val age: Int) {
  * Это sealed класс MathOperation, создан для задания 11.
  */
 sealed class MathOperation {
-   open fun operation(a: Int, b: Int): Int {
-        return a
-    }
+   abstract fun operation(a: Int, b: Int): Int
 }
 
 /**
@@ -325,9 +289,9 @@ class Tires {
     }
 }
 /**
- * Это класс Cars, который получает Engine и Tires через конструктор
+ * Это класс Car2, который получает Engine и Tires через конструктор
  */
-class Cars (val engine: Engine, val tires: Tires) {
+class Car2 (val engine: Engine, val tires: Tires) {
     fun maintenance() {
         engine.seeEngine()
         tires.changesTires()
@@ -422,12 +386,10 @@ fun main() {
      */
     println("Задание 5: кастомные геттеры и сеттеры")
     val girl = Person()
-    girl.setNameValue("Инна")
-    girl.setAgeValue(-5)
-    girl.getAgeValue()
-    girl.getNameValue()
-    println()
-    println()
+    girl.name = "Инна"
+    girl.age = -5
+    println(girl.name)
+    println(girl.age)
 
     /* Задание 6: Создайте класс Animal с методом makeSound(), затем создайте классы Dog и Cat,
     наследующие от Animal, и переопределите метод makeSound().
@@ -509,7 +471,7 @@ fun main() {
     который получает Engine и Tires через конструктор (Dependency Injection).
      */
     println("Задание 13: Dependency Injection")
-    val myCar = Cars(Engine(), Tires())
+    val myCar = Car2(Engine(), Tires())
     myCar.maintenance()
     println()
     println()
