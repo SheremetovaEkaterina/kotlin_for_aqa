@@ -1,10 +1,8 @@
+import kotlin.math.PI
 /**
  * Это класс Car, создан для задания 1.
  */
-class Car {
-    var model: String = "Mercedes"
-    var color: String = "Black"
-    var year: Int = 2005
+class Car (val model: String, val color: String, val year: Int) {
     fun drive () {
         println("Машина марки $model, цветом $color и годом выпуска $year начала движение")
     }
@@ -122,9 +120,9 @@ abstract class Shape {
 /**
  * Это класс Circle, наследник Shape и реализовавывает метод area().
  */
-class Circle(var r: Double, var pi: Double = 3.14) : Shape() {
+class Circle(val r: Double) : Shape() {
     override fun area(): Double {
-        return pi * r * r
+        return PI * r * r
     }
 }
 
@@ -334,16 +332,8 @@ fun main() {
     Создайте несколько объектов этого класса и вызовите их метод drive().
      */
     println("Задание 1: класс Car")
-    val newCar = Car().apply {
-        model = "Porsche"
-        color = "White"
-        year = 2025
-    }
-    val oldCar = Car().apply {
-        model = "BMW"
-        color = "Blue"
-        year = 1998
-    }
+    val newCar = Car("Porshe", "White", 2025)
+    val oldCar = Car("BMW", "Blue", 1998)
     newCar.drive()
     oldCar.drive()
     println()
